@@ -8,7 +8,7 @@ class App extends Component{
 		console.log(this.props.users);
 		return (
 			<div>
-				<input type="text" >
+				<input type="text" ></input>
 				<ul>
 					{this.props.users.map((user, index) =>
 						<li key={index}>{user}</li>)}
