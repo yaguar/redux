@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, combineReducers} from 'redux';
 import {Component} from 'react';
+import {reducer as formReducer} from 'redux-form';
 
 import App from './containers/App'; 
 //class App extends Component{}
@@ -21,7 +22,12 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
-let store = createStore(reducer);
+
+const rootReducer = combineReducers({
+	reducer,
+	form: formReducer
+});
+let store = createStore(rootReducer);
 
 
 ReactDOM.render(

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import ListPerson from '../components/ListPerson.js';
+import FormAdd from '../FormAdd.js';
 import React, {Component} from 'react';
 import addUser from '../action/adduser';
 
@@ -8,7 +8,7 @@ class App extends Component{
 		console.log(this.props.users);
 		return (
 			<div>
-				<input type="text" >
+				<FormAdd />	
 				<ul>
 					{this.props.users.map((user, index) =>
 						<li key={index}>{user}</li>)}
@@ -20,7 +20,7 @@ class App extends Component{
 
 function mapStateToProps(state){
 	let props = {
-		users: state.users,
+		users: state.reducer.users,
 	};
 	return props;
 }
