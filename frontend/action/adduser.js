@@ -1,6 +1,6 @@
-export default function addUser(user){
+export default function addUser(users){
 	return{
-		type:'ADD_USER',
-		user
+		type:'USER_ADD',
+		users
 	};
 }

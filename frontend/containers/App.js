@@ -1,18 +1,20 @@
 import {connect} from 'react-redux';
-import FormAdd from '../FormAdd.js';
+import FormAdd from '../containers/FormAdd.js';
 import React, {Component} from 'react';
 import addUser from '../action/adduser';
 
 class App extends Component{
+	//const submit = (values)=>{console.log(values);this.props.reset();}
+	
 	render(){
-		console.log(this.props.users);
+		const submit = (values)=>{console.log(values);}
+	
+		//console.log(this.props.users);
+		//this.props.onClicker('mylong');
 		return (
 			<div>
-<<<<<<< HEAD
-				<FormAdd />	
-=======
-				<input type="text" ></input>
->>>>>>> 189b1682e4198245c58496902c06585f40a08457
+
+				<FormAdd />
 				<ul>
 					{this.props.users.map((user, index) =>
 						<li key={index}>{user}</li>)}
@@ -24,7 +26,7 @@ class App extends Component{
 
 function mapStateToProps(state){
 	let props = {
-		users: state.reducer.users,
+		users: state.users,
 	};
 	return props;
 }

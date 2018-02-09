@@ -1,49 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, getState} from 'redux';
 import {Component} from 'react';
-<<<<<<< HEAD
 import {reducer as formReducer} from 'redux-form';
-=======
-import {reducer as formReducer} form 'redux-form';
->>>>>>> 189b1682e4198245c58496902c06585f40a08457
-
+import addUser from './action/adduser';
 import App from './containers/App'; 
 //class App extends Component{}
-let initialState = { users:['ghfh','sdfsdv']ш};
+let initialState = { users:['ghfh','sdfsdv']};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'USER_ADD':{
-      const user = action.user;
-      return [...state, user];
-      return state;
-    }
+      return [...state.users, action.users]
+    };
     case 'USER_REMOVE': {
       return state;
-    }
+    };
     default:
       return state;
-  }
+  };
 };
 
 const rootReducer = combineReducers({
-<<<<<<< HEAD
-	reducer,
+	users: reducer,
 	form: formReducer
 });
-=======
-  reducer,
-  form: formReducer,	
-});
-
->>>>>>> 189b1682e4198245c58496902c06585f40a08457
+ 
 let store = createStore(rootReducer);
 
-
+//store.dispatch({type: 'USER_ADD', users:'my'});
+store.dispatch(addUser('my1'));
+console.log(store.getState());
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<App />	
 	</ Provider>,
 	document.getElementById('root')
 );
