@@ -9,11 +9,11 @@ class App extends Component{
 	render(){
 		const submit = (values)=>{console.log(values);}
 	
-		//console.log(this.props.users);
-		//this.props.onClicker('mylong');
+		console.log(this.props);
+		
 		return (
 			<div>
-
+				<button onClick={() => {this.props.onClicker('jhgj')}}>кнопка</button>
 				<FormAdd />
 				<ul>
 					{this.props.users.map((user, index) =>
@@ -26,19 +26,23 @@ class App extends Component{
 
 function mapStateToProps(state){
 	let props = {
-		users: state.users,
+		users: state.users.users,
 	};
 	return props;
 }
 
-function mapDispatchToProps(dispatch){
-	return {onClicker: (user) => dispatch(addUser(user))}
-	
+function mapDispatchToProps(dispatch) {
+	return {
+		onClicker: (user) => {
+		alert('df')
+		dispatch(addUser(user))
+	}
+	}
 }
 
 const listPerson = connect(
 	mapStateToProps,
-	mapDispatchToProps,
+	mapDispatchToProps
 )(App);
 
 export default listPerson;

@@ -11,7 +11,8 @@ let initialState = { users:['ghfh','sdfsdv']};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'USER_ADD':{
-      return [...state.users, action.users]
+      console.log('sd')
+      return {users: [...state.users, ...action.users]}
     };
     case 'USER_REMOVE': {
       return state;
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
 	form: formReducer
 });
  
-let store = createStore(rootReducer);
+let store = createStore(rootReducer, /* preloadedState, */
+   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 //store.dispatch({type: 'USER_ADD', users:'my'});
 store.dispatch(addUser('my1'));

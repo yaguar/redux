@@ -1,14 +1,20 @@
 import {connect} from 'react-redux';
-import ListPerson from '../components/ListPerson.js';
+import FormAdd from '../containers/FormAdd.js';
 import React, {Component} from 'react';
 import addUser from '../action/adduser';
 
 class App extends Component{
+	//const submit = (values)=>{console.log(values);this.props.reset();}
+	
 	render(){
-		console.log(this.props.users);
+		const submit = (values)=>{console.log(values);}
+	
+		console.log(this.props);
+		this.props.onClicker();
 		return (
 			<div>
-				<input type="text" >
+
+				<FormAdd />
 				<ul>
 					{this.props.users.map((user, index) =>
 						<li key={index}>{user}</li>)}
@@ -26,13 +32,13 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-	return {onClicker: (user) => dispatch(addUser(user))}
+	return {onClicker: () => dispatch({type: 'ADD', users:'mylong'})}
 	
 }
 
 const listPerson = connect(
 	mapStateToProps,
-	mapDispatchToProps,
+	mapDispatchToProps
 )(App);
 
 export default listPerson;
