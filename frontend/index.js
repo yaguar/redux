@@ -11,8 +11,8 @@ let initialState = { users:['ghfh','sdfsdv']};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'USER_ADD':{
-      console.log('sd')
-      return {users: [...state.users, ...action.users]}
+			console.log(action.users)
+      return {users: [...state.users, action.users]}
     };
     case 'USER_REMOVE': {
       return state;
@@ -31,8 +31,8 @@ let store = createStore(rootReducer, /* preloadedState, */
    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 //store.dispatch({type: 'USER_ADD', users:'my'});
-store.dispatch(addUser('my1'));
-console.log(store.getState());
+
+//console.log(store.getState());
 ReactDOM.render(
 	<Provider store={store}>
 		<App />	

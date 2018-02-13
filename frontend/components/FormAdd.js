@@ -4,19 +4,17 @@ import addUser from '../action/adduser';
 import { Field, reduxForm } from 'redux-form';
 
 class FormAdd extends Component {
-	constructor(props){
-		super(props);
-	}
 	render(){
- 		//const { handleSubmit, pristine, reset, submitting } = this.props;
- 		const submit = (values)=>{this.props.onClicker(values);this.props.reset();}
+ 		const { handleSubmit, pristine, reset, submitting } = this.props;
+		console.log(this.props);
+ 		const submit = (values)=>{handleSubmit(values.users);this.props.reset();}
 	 	return (
     	<form onSubmit={submit}>
       	<div>
         	<label>First Name</label>
         	<div>
           	<Field
-            	name="user"
+            	name="users"
             	component="input"
             	type="text"
             	placeholder="user"
