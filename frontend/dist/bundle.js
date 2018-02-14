@@ -5159,7 +5159,19 @@ var rootReducer = (0, _redux.combineReducers)({
 
 var store = (0, _redux.createStore)(rootReducer, /* preloadedState, */
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+fetch('/listcontact').then(function (response) {
+  if (response.status !== 200) {
+    console.log('Looks like there was a problem. Status Code: ' + response.status);
+    return;
+  }
 
+  // Examine the text in the response  
+  response.json().then(function (data) {
+    console.log(data);
+  });
+}).catch(function (err) {
+  console.log('Fetch Error :-S', err);
+});
 //store.dispatch({type: 'USER_ADD', users:'my'});
 
 //console.log(store.getState());

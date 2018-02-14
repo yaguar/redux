@@ -19,5 +19,5 @@ from djrest.views import TelNoteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'listcontact',TelNoteView.as_view(), name='viewlist')
+    path(r'listcontact',TelNoteView.as_view(template_name='./index.html'), name='viewlist')
 ]

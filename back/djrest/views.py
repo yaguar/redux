@@ -12,18 +12,12 @@ class TelNoteView(APIView):
     """
     Retrieve, update or delete a snippet instance.
     """
+    
     def get(self, request, format=None):
         telnotes = TelNote.objects.all()
         serializer = TelNoteSerializer(telnotes, many=True)
         return Response(serializer.data)
-"""
-    def post(self, request, format=None):
-        serializer = TelNoteSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-"""
+
     def get_object(self, pk):
         try:
             return TelNote.objects.get(pk=pk)
