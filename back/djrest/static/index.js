@@ -7,7 +7,7 @@ import {reducer as formReducer} from 'redux-form';
 import addUser from './action/adduser';
 import App from './containers/App'; 
 //class App extends Component{}
-let initialState = { users:['ghfh','sdfsdv']};
+let initialState = { users:[{first_name:'Иван', last_name:'Биденко', phone:'123456'}, {first_name:'Макс', last_name:'Мартынов', phone:'234567'}]};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'USER_ADD':{

@@ -5132,7 +5132,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 //class App extends Component{}
-var initialState = { users: ['ghfh', 'sdfsdv'] };
+var initialState = { users: [{ first_name: 'Иван', last_name: 'Биденко', phone: '123456' }, { first_name: 'Макс', last_name: 'Мартынов', phone: '234567' }] };
 var reducer = function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
@@ -32396,8 +32396,10 @@ var FormAdd = function (_Component) {
       //console.log(this.props);
 
       var submit = function submit(values) {
-        _this2.props.onClicker(values.users);reset();
+        _this2.props.onClicker(values);reset();
       };
+      //const submit = (values)=>{console.log(values);reset()}
+
       return _react2.default.createElement(
         'div',
         null,
@@ -32416,10 +32418,48 @@ var FormAdd = function (_Component) {
               'div',
               null,
               _react2.default.createElement(_reduxForm.Field, {
-                name: 'users',
+                name: 'first_name',
                 component: 'input',
                 type: 'text',
-                placeholder: 'user'
+                placeholder: 'first_name'
+              })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Last Name'
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(_reduxForm.Field, {
+                name: 'last_name',
+                component: 'input',
+                type: 'text',
+                placeholder: 'last_name'
+              })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Phone'
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(_reduxForm.Field, {
+                name: 'phone',
+                component: 'input',
+                type: 'text',
+                placeholder: 'phone'
               })
             )
           ),
@@ -32511,7 +32551,7 @@ var App = function (_Component) {
 				console.log(values);
 			};
 
-			//console.log(this.props);
+			console.log(this.props);
 
 			return _react2.default.createElement(
 				'div',
@@ -32520,7 +32560,7 @@ var App = function (_Component) {
 					return _react2.default.createElement(
 						'li',
 						{ key: index },
-						user
+						user.phone
 					);
 				})
 			);

@@ -7,7 +7,9 @@ class FormAdd extends Component {
 	render(){
  		const { handleSubmit, pristine, reset, submitting } = this.props;
 		//console.log(this.props);
- 		const submit = (values)=>{this.props.onClicker(values.users);reset()}
+ 		const submit = (values)=>{this.props.onClicker(values);reset()}
+		//const submit = (values)=>{console.log(values);reset()}
+
 	 	return (
 		<div>	
     	<form onSubmit={handleSubmit(submit)}>
@@ -15,14 +17,38 @@ class FormAdd extends Component {
         	<label>First Name</label>
         	<div>
           	<Field
-            	name="users"
+            	name="first_name"
             	component="input"
             	type="text"
-            	placeholder="user"
+            	placeholder="first_name"
+          	/>
+        	</div>
+      	</div>
+    		<div>
+        	<label>Last Name</label>
+        	<div>
+          	<Field
+            	name="last_name"
+            	component="input"
+            	type="text"
+            	placeholder="last_name"
+          	/>
+        	</div>
+      	</div>
+    		<div>
+        	<label>Phone</label>
+        	<div>
+          	<Field
+            	name="phone"
+            	component="input"
+            	type="text"
+            	placeholder="phone"
           	/>
         	</div>
       	</div>
      
+ 
+ 
       	<div>
         	<button type="submit">
           	Submit

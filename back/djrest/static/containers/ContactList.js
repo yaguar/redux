@@ -8,12 +8,12 @@ class App extends Component{
 	render(){
 		const submit = (values)=>{console.log(values);}
 	
-		//console.log(this.props);
+		console.log(this.props);
 		
 		return (
 			<div>
 					{this.props.users.map((user, index) =>
-						<li key={index}>{user}</li>)}
+						<li key={index}>{user.phone}</li>)}
 			</div>
 		);
 	}
