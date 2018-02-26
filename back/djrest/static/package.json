@@ -9,7 +9,9 @@
     "react-redux": "^5.0.6",
     "react-scripts": "0.9.5",
     "redux": "^3.7.2",
-    "redux-form": "^7.2.3"
+    "redux-form": "^7.2.3",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
