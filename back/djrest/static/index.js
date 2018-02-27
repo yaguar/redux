@@ -63,7 +63,14 @@ fetch('/listcontact')
     console.log('Fetch Error :-S', err);  
   });
 //store.dispatch({type: 'USER_ADD', users:'my'});
-fetch('/listcontact')  
+fetch('/listcontact', {method:'post',headers: {
+    'Accept': 'application/json, text/plain, */*',
+    'Content-Type': 'application/json'
+  }, body:JSON.stringify({
+        first_name: 'Акмарал',
+        last_name: 'Ашимова',
+        phone: 17264725
+    })})  
   .then(  
     function(response) {  
       if (response.status !== 200) {  
@@ -84,7 +91,7 @@ fetch('/listcontact')
   .catch(function(err) {  
     console.log('Fetch Error :-S', err);  
   });
-/
+
 //console.log(store.getState());
 ReactDOM.render(
 	<Provider store={store}>
