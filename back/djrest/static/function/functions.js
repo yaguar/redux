@@ -25,13 +25,13 @@ export function method_get(){
     })
 }
 
-export function method_post(){
+export function method_post(user){
   fetch('/listcontact', {method:'post',headers: {
      'Accept': 'application/json, text/plain, */*',
      'Content-Type': 'application/json'
     }, body:JSON.stringify({
-          first_name: 'Акмарал',
-          last_name: 'Ашимова',
+          first_name: user.first_name,
+          last_name: user.last_name,
           phone: 17264725
       })})  
     .then(  
@@ -43,12 +43,9 @@ export function method_post(){
         }
 
       // Examine the text in the response  
-        response.json().then(function(data) {  
-          console.log(data);
-          data.map((user, index) =>
-						store.dispatch(addUser(user)))
+        
         //store.dispatch(addUser(data));  
-        });  
+          
       }  
     )  
     .catch(function(err) {  

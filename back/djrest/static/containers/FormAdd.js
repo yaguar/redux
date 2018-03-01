@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import addUser from '../action/adduser';
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
+//import {method_post} from './function/functions';
 
 class FormAdd extends Component {
 	render(){
@@ -63,8 +64,36 @@ const UsersAdd = reduxForm({
   form: 'FormAdd' // a unique identifier for this form
 })(FormAdd)
 
+function method_post(user){
+  fetch('/listcontact', {method:'post',headers: {
+     'Accept': 'application/json, text/plain, */*',
+     'Content-Type': 'application/json'
+    }, body:JSON.stringify({
+          first_name: user.first_name,
+          last_name: user.last_name,
+          phone: user.phone
+      })})  
+    .then(  
+      function(response) {  
+        if (response.status != 201){  
+          console.log('Looks like there was a problem. Status Code: ' +  
+            response.status);  
+          return 0;  
+        }
+
+      // Examine the text in the response  
+        
+        return 1;  
+          
+      }  
+    )  
+    .catch(function(err) {  
+      console.log('Fetch Error :-S', err);  
+    });
+}
+
 function mapDispatchToProps(dispatch){
-	return {onClicker: (user) => dispatch(addUser(user))}
+	return {onClicker: (user) => { if (method_post(user)!=0) {dispatch(addUser(user))}}}
 	
 }
 
@@ -75,8 +104,6 @@ function mapStateToProps(state){
 	};
 	return props;
 }
-
-
 
 const list = connect(
 	mapStateToProps,
