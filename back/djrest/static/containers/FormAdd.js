@@ -6,32 +6,34 @@ import { Field, reduxForm } from 'redux-form';
 
 const validate = values => {
   const errors = {}
-  if (!values.username) {
-    errors.username = 'Required'
-  } else if (values.username.length > 15) {
-    errors.username = 'Must be 15 characters or less'
+   
+  if (!values.first_name) {
+    errors.first_name = 'Required'
+  } else if (values.first_name.length > 15) {
+    errors.first_name = 'Must be 15 characters or less'
   }
-  if (!values.email) {
-    errors.email = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
+
+  if (!values.last_name) {
+    errors.last_name = 'Required'
+  } else if (values.last_name.length > 15) {
+    errors.last_name = 'Must be 15 characters or less'
   }
-  if (!values.age) {
-    errors.age = 'Required'
-  } else if (isNaN(Number(values.age))) {
-    errors.age = 'Must be a number'
-  } else if (Number(values.age) < 18) {
-    errors.age = 'Sorry, you must be at least 18 years old'
-  }
+
+  if (!values.phone) {
+    errors.phone = 'Required'
+  } /*else if (!/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i.test(values.phone)) {
+    errors.phone = 'Invalid phone number'
+  }*/
   return errors
 }
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type}/>
-      {touched && (error && <span>{error}</span>)}
+const renderField = ({ input, label, type, meta: { touched, error} }) => (
+  <div class="form-group row">
+    <label for={name} class="col-sm-4 col-form-label"></label>
+    <div class="col-sm-4">
+      {label}
+      <input {...input} placeholder={label} type={type} id={name} class="form-control"/>
+      {touched && (error && <div class="invalid-feedback">{error}</div>)}
     </div>
   </div>
 )
@@ -45,59 +47,27 @@ class FormAdd extends Component {
 
 	 	return (
 		<div>	
-    	<form onSubmit={handleSubmit(submit)} class="needs-validation">
-      	<div class="form-group row">
-        	<label for="first_name" class="col-sm-4 col-form-label"></label>
-        	<div class="col-sm-4">
-                First Name
+    	<form onSubmit={handleSubmit(submit)} >
           	<Field
             	name="first_name"
-            	component="input"
+            	component={renderField}
             	type="text"
-            	placeholder="first_name"
-                class="form-control" id="first_name"
+            	label="Имя"
           	/>
-		<div class="invalid-feedback">
-        		Please provide a valid city.
-      		</div>
-        	</div>
-      	</div>
-    	<div class="form-group row">
-        	<label class="col-sm-4 col-form-label">Last Name</label>
-        	<div class="col-sm-4">
           	<Field
             	name="last_name"
-            	component="input"
+            	component={renderField}
             	type="text"
-            	placeholder="last_name"
-                class="form-control" id="last_name"
-   
+            	label="Фамилия"
           	/>
-		<div class="invalid-feedback">
-        		Please provide a valid city.
-      		</div>
-        	</div>
-      	</div>
-    	<div class="form-group row">
-        	<label class="col-sm-4 col-form-label">Phone</label>
-        	<div class="col-sm-4">
           	<Field
             	name="phone"
-            	component="input"
+            	component={renderField}
             	type="tel"
-            	placeholder="phone"
-                class="form-control" id="phone"
+            	label="Номер телефона"
           	/>
-		<div class="invalid-feedback">
-                	Please provide a valid city.
-                </div>
-        	</div>
-      	</div>
-     
- 
- 
       	<div class="form-group row">
-        	<button type="submit" class="btn btn-primary">
+        	<button type="submit" disabled={submitting}  class="btn btn-primary">
           	Submit
         	</button>
       	</div>
@@ -109,7 +79,8 @@ class FormAdd extends Component {
 }
 
 const UsersAdd = reduxForm({
-  form: 'FormAdd' // a unique identifier for this form
+  form: 'FormAdd', // a unique identifier for this form
+  validate
 })(FormAdd)
 
 function method_post(user){
