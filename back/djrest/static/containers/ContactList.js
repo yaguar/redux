@@ -11,10 +11,10 @@ class App extends Component{
 		console.log(this.props);
 		
 		return (
-			<div>
+			<ul class="list-group">
 					{this.props.users.map((user, index) =>
-						<li key={index}>{user.phone}</li>)}
-			</div>
+						<li key={index} class="list-group-item">{user.phone}</li>)}
+			</ul>
 		);
 	}
 }

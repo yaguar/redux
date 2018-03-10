@@ -1,0 +1,11 @@
+div.nonvalid {
+  color:#FF0000;
+}
+
+input:invalid {
+  border-color: #FF0000;
+}
+
+div.formback {
+  background: #FF0000;
+}

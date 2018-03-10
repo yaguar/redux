@@ -32438,22 +32438,26 @@ var validate = function validate(values) {
   var errors = {};
 
   if (!values.first_name) {
-    errors.first_name = 'Required';
-  } else if (values.first_name.length > 15) {
-    errors.first_name = 'Must be 15 characters or less';
+    errors.first_name = 'Это обязательное поле!';
+  } else if (values.first_name.length > 20) {
+    errors.first_name = 'Не больше 20 сомволов!';
+  } else if (!/^[A-Za-zА-Яа-яЁё]+$/i.test(values.first_name)) {
+    errors.first_name = 'Некорректные символы!';
   }
 
   if (!values.last_name) {
-    errors.last_name = 'Required';
-  } else if (values.last_name.length > 15) {
-    errors.last_name = 'Must be 15 characters or less';
+    errors.last_name = 'Это обязательное поле!';
+  } else if (values.last_name.length > 20) {
+    errors.last_name = 'Не больше 20 символов!';
+  } else if (!/^[A-Za-zА-Яа-яЁё]+$/i.test(values.last_name)) {
+    errors.last_name = 'Некорректные символы!';
   }
 
   if (!values.phone) {
-    errors.phone = 'Required';
-  } /*else if (!/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i.test(values.phone)) {
-    errors.phone = 'Invalid phone number'
-    }*/
+    errors.phone = 'Это обязательное поле!';
+  } else if (!/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i.test(values.phone)) {
+    errors.phone = 'Некорректный номер!';
+  }
   return errors;
 };
 
@@ -32461,21 +32465,23 @@ var renderField = function renderField(_ref) {
   var input = _ref.input,
       label = _ref.label,
       type = _ref.type,
+      id = _ref.id,
       _ref$meta = _ref.meta,
       touched = _ref$meta.touched,
-      error = _ref$meta.error;
+      error = _ref$meta.error,
+      invalid = _ref$meta.invalid;
   return _react2.default.createElement(
     'div',
-    { 'class': 'form-group row' },
-    _react2.default.createElement('label', { 'for': name, 'class': 'col-sm-4 col-form-label' }),
+    { 'class': 'form-group col-md-4' },
+    _react2.default.createElement('label', { 'for': id }),
     _react2.default.createElement(
       'div',
-      { 'class': 'col-sm-4' },
+      null,
       label,
-      _react2.default.createElement('input', _extends({}, input, { placeholder: label, type: type, id: name, 'class': 'form-control' })),
+      _react2.default.createElement('input', _extends({}, input, { placeholder: label, type: type, id: id, 'class': 'form-control' })),
       touched && error && _react2.default.createElement(
         'div',
-        { 'class': 'invalid-feedback' },
+        { 'class': 'nonvalid' },
         error
       )
     )
@@ -32514,34 +32520,38 @@ var FormAdd = function (_Component) {
         _react2.default.createElement(
           'form',
           { onSubmit: handleSubmit(submit) },
-          _react2.default.createElement(_reduxForm.Field, {
-            name: 'first_name',
-            component: renderField,
-            type: 'text',
-            label: '\u0418\u043C\u044F'
-          }),
-          _react2.default.createElement(_reduxForm.Field, {
-            name: 'last_name',
-            component: renderField,
-            type: 'text',
-            label: '\u0424\u0430\u043C\u0438\u043B\u0438\u044F'
-          }),
-          _react2.default.createElement(_reduxForm.Field, {
-            name: 'phone',
-            component: renderField,
-            type: 'tel',
-            label: '\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430'
-          }),
           _react2.default.createElement(
             'div',
-            { 'class': 'form-group row' },
-            _react2.default.createElement(
-              'button',
-              { type: 'submit', disabled: submitting, 'class': 'btn btn-primary' },
-              'Submit'
-            )
+            { 'class': 'form-row' },
+            _react2.default.createElement(_reduxForm.Field, {
+              name: 'first_name',
+              id: 'first_name',
+              component: renderField,
+              type: 'text',
+              label: '\u0418\u043C\u044F'
+            }),
+            _react2.default.createElement(_reduxForm.Field, {
+              name: 'last_name',
+              id: 'last_name',
+              component: renderField,
+              type: 'text',
+              label: '\u0424\u0430\u043C\u0438\u043B\u0438\u044F'
+            }),
+            _react2.default.createElement(_reduxForm.Field, {
+              name: 'phone',
+              id: 'phone',
+              component: renderField,
+              type: 'tel',
+              label: '\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430'
+            })
+          ),
+          _react2.default.createElement(
+            'button',
+            { type: 'submit', disabled: submitting, 'class': 'btn btn-primary' },
+            '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C'
           )
-        )
+        ),
+        _react2.default.createElement('br', null)
       );
     }
   }]);
@@ -32648,12 +32658,12 @@ var App = function (_Component) {
 			console.log(this.props);
 
 			return _react2.default.createElement(
-				'div',
-				null,
+				'ul',
+				{ 'class': 'list-group' },
 				this.props.users.map(function (user, index) {
 					return _react2.default.createElement(
 						'li',
-						{ key: index },
+						{ key: index, 'class': 'list-group-item' },
 						user.phone
 					);
 				})
