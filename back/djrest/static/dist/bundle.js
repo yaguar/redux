@@ -5140,37 +5140,14 @@ var _App = __webpack_require__(302);
 
 var _App2 = _interopRequireDefault(_App);
 
+var _reducer = __webpack_require__(306);
+
+var _reducer2 = _interopRequireDefault(_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-//class App extends Component{}
-var initialState = { users: [] };
-var reducer = function reducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'USER_ADD':
-      {
-        return { users: [].concat(_toConsumableArray(state.users), [action.users]) };
-      };
-    case 'USER_REMOVE':
-      {
-        return state;
-      };
-    case 'USERS_UPDATE':
-      {
-        console.log(action);
-        return state;
-      }
-    default:
-      return state;
-  };
-};
-
 var rootReducer = (0, _redux.combineReducers)({
-  users: reducer,
+  users: _reducer2.default,
   form: _reduxForm.reducer
 });
 
@@ -5182,13 +5159,10 @@ fetch('/listcontact').then(function (response) {
     return;
   }
 
-  // Examine the text in the response  
   response.json().then(function (data) {
-    console.log(data);
     data.map(function (user, index) {
       return store.dispatch((0, _adduser2.default)(user));
     });
-    //store.dispatch(addUser(data));  
   });
 }).catch(function (err) {
   console.log('Fetch Error :-S', err);
@@ -32342,10 +32316,8 @@ exports['default'] = thunk;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+      value: true
 });
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _FormAdd = __webpack_require__(303);
 
@@ -32355,45 +32327,20 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _adduser = __webpack_require__(37);
-
-var _adduser2 = _interopRequireDefault(_adduser);
-
 var _ContactList = __webpack_require__(304);
 
 var _ContactList2 = _interopRequireDefault(_ContactList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var App = function (_Component) {
-	_inherits(App, _Component);
-
-	function App() {
-		_classCallCheck(this, App);
-
-		return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-	}
-
-	_createClass(App, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(_FormAdd2.default, null),
-				_react2.default.createElement(_ContactList2.default, null)
-			);
-		}
-	}]);
-
-	return App;
-}(_react.Component);
+var App = function App() {
+      return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(_FormAdd2.default, null),
+            _react2.default.createElement(_ContactList2.default, null)
+      );
+};
 
 exports.default = App;
 
@@ -32692,6 +32639,44 @@ var Person = function Person(props) {
 };
 
 exports.default = Person;
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var initialState = { users: [] };
+var reducer = function reducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'USER_ADD':
+      {
+        return { users: [].concat(_toConsumableArray(state.users), [action.users]) };
+      };
+    case 'USER_REMOVE':
+      {
+        return state;
+      };
+    case 'USERS_UPDATE':
+      {
+        return state;
+      }
+    default:
+      return state;
+  };
+};
+
+exports.default = reducer;
 
 /***/ })
 /******/ ]);
