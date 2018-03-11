@@ -26,31 +26,12 @@ class TelNoteView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, format=None):
+        number = request.data['number']
+        serializer = TelNote.objects.all()
+        serializer[number].delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 def contact_list(request):
 	return render(request, 'index.html')
 
-"""
-    def get_object(self, pk):
-        try:
-            return TelNote.objects.get(pk=pk)
-        except TelNote.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        telnote = self.get_object(pk)
-        serializer = TelNoteSerializer(snippet)
-        return Response(serializer.data)
-
-    def put(self, request, pk, format=None):
-        telnote = self.get_object(pk)
-        serializer = TelNoteSerializer(telnote, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk, format=None):
-        telnote = self.get_object(pk)
-        telnote.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-"""

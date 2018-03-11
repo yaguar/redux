@@ -5,8 +5,8 @@ import Person from '../components/Person';
 
 const App = ({users}) => 	(
   <ul class="list-group">
-	  {users.map((user, index) => <Person key={index} user={user}/>)}
-	</ul>
+    {users.map((user, index) => <Person key={index} user={user}/>)}
+  </ul>
 );
 
 
