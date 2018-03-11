@@ -5,7 +5,7 @@ const reducer = (state = initialState, action) => {
       return {users: [...state.users, action.users]}
     };
     case 'USER_REMOVE': {
-      return state;
+      return {users: [...state.users.filter((user, item) =>  item!==action.index)]}
     };
     case 'USERS_UPDATE': {
       return state;
