@@ -32616,8 +32616,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _reactRedux = __webpack_require__(6);
 
 var _react = __webpack_require__(1);
@@ -32628,70 +32626,72 @@ var _adduser = __webpack_require__(37);
 
 var _adduser2 = _interopRequireDefault(_adduser);
 
+var _Person = __webpack_require__(305);
+
+var _Person2 = _interopRequireDefault(_Person);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var App = function App(_ref) {
+	var users = _ref.users;
+	return _react2.default.createElement(
+		'ul',
+		{ 'class': 'list-group' },
+		users.map(function (user, index) {
+			return _react2.default.createElement(_Person2.default, { key: index, user: user });
+		})
+	);
+};
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var App = function (_Component) {
-	_inherits(App, _Component);
-
-	function App() {
-		_classCallCheck(this, App);
-
-		return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-	}
-
-	_createClass(App, [{
-		key: 'render',
-
-		//const submit = (values)=>{console.log(values);this.props.reset();}
-
-		value: function render() {
-			var submit = function submit(values) {
-				console.log(values);
-			};
-
-			console.log(this.props);
-
-			return _react2.default.createElement(
-				'ul',
-				{ 'class': 'list-group' },
-				this.props.users.map(function (user, index) {
-					return _react2.default.createElement(
-						'li',
-						{ key: index, 'class': 'list-group-item' },
-						user.phone
-					);
-				})
-			);
-		}
-	}]);
-
-	return App;
-}(_react.Component);
-
-function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state) {
 	var props = {
 		users: state.users.users
 	};
 	return props;
-}
+};
 
-function mapDispatchToProps(dispatch) {
-	return {
-		onClicker: function onClicker(user) {
-			dispatch((0, _adduser2.default)(user));
-		}
-	};
-}
-
-var listPerson = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
+var listPerson = (0, _reactRedux.connect)(mapStateToProps)(App);
 
 exports.default = listPerson;
+
+/***/ }),
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Person = function Person(props) {
+  return _react2.default.createElement(
+    "li",
+    { "class": "list-group-item" },
+    _react2.default.createElement(
+      "span",
+      { "class": "left" },
+      props.user.last_name,
+      " ",
+      props.user.first_name
+    ),
+    " ",
+    _react2.default.createElement(
+      "span",
+      { "class": "right" },
+      props.user.phone
+    )
+  );
+};
+
+exports.default = Person;
 
 /***/ })
 /******/ ]);

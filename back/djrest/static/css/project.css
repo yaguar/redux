@@ -9,3 +9,11 @@ input:invalid {
 div.formback {
   background: #FF0000;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
