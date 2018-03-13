@@ -24,6 +24,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'listcontact',TelNoteView.as_view(), name='viewlist'),
-    path(r'contactlist',views.contact_list, name='contactlist')
+    path(r'^listcontact$',TelNoteView.as_view(), name='viewlist'),
+    path(r'',views.contact_list, name='contactlist')
 ]
